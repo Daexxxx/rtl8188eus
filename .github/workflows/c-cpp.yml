@@ -1,27 +1,30 @@
-name: C/C++ CI
+name: Build and Deploy Deb Package
 
 on:
   push:
-    branches: [ "v5.3.9" ]
-  pull_request:
-    branches: [ "v5.3.9" ]
+    branches:
+      - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Install Dependencies
-      run: sudo apt-get install build-essential devscripts dh-make
-    - name: make
-      run: make
-    - name: dh_make
-      run: dh_make -p rtl8188eusdriver_5.3.9 -s --createorig
-
-    - name: Build .deb
-      run: dpkg-buildpackage -us -uc
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: |
+          yarn install
+      - name: Build the C project
+        run: |
+          yarn build
+      - name: Create the .deb file
+        run: |
+          dpkg-buildpackage -b
+      - name: Upload the .deb file
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-deb-package
+          path: dist/*.deb
 
 
 
