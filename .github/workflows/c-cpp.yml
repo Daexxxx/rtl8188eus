@@ -1,30 +1,35 @@
-name: Build and Deploy Deb Package
+name: Build and deploy .deb file
 
 on:
   push:
     branches:
       - main
+      - v5.3.9
+  pull_request:
+    branches:
+      - v5.3.9
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
       - name: Install dependencies
-        run: |
-          yarn install
-      - name: Build the C project
-        run: |
-          yarn build
-      - name: Create the .deb file
-        run: |
-          dpkg-buildpackage -b
-      - name: Upload the .deb file
-        uses: actions/upload-artifact@v3
+        run: sudo apt-get install make debhelper
+      - name: Build C project
+        run: make
+      - name: Create .deb file
+        run: dpkg-buildpackage -rfakeroot -us -uc
+      - name: Upload .deb file
+        uses: actions/upload-artifact@v2
         with:
-          name: my-deb-package
-          path: dist/*.deb
+          name: my-project.deb
+          path: ./debian/artifacts/my-project_0.1.0_amd64.deb
+
+
+          
+          
+
 
 
 
