@@ -1,5 +1,3 @@
-name: Build and deploy .deb file
-
 on:
   push:
     branches:
@@ -15,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt-get install make debhelper
+        run: sudo apt-get install make debhelper dh-sequence-dkms
       - name: Build C project
         run: make
       - name: Create .deb file
@@ -25,6 +23,7 @@ jobs:
         with:
           name: my-project.deb
           path: ./debian/artifacts/my-project_0.1.0_amd64.deb
+
 
 
           
