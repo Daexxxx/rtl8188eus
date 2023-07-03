@@ -18,7 +18,8 @@ jobs:
     - name: make
       run: make
     - name: dh_make
-      run: dh_make --createorig -p rtl8188eus-dkms_5.3.9
+      run: dh_make -s --createorig
+
     - name: Build .deb
       run: dpkg-buildpackage -us -uc
 
