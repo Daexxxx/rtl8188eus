@@ -16,8 +16,6 @@ jobs:
         run: sudo apt-get install make debhelper dh-sequence-dkms
       - name: Build C project
         run: make
-      - name: dpkg -b
-        run: dpkg-source -b
       - name: Create .deb file
         run: dpkg-buildpackage -rfakeroot -us -uc
       - name: Upload .deb file
