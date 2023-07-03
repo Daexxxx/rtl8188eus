@@ -13,5 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install Dependencies
+      run: sudo apt-get install build-essential devscripts dh-make
     - name: make
       run: make
+    - name: dh_make
+      run: dh_make --createorig
+    - name: Build .deb
+      run: dpkg-buildpackage -us -uc
+
+
+
