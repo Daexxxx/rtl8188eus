@@ -1,0 +1,25 @@
+From: Sophie Brun <sophie@offensive-security.com>
+Date: Wed, 18 May 2022 17:47:55 +0200
+Subject: Build support with kernel v5.17
+
+Origin: https://github.com/aircrack-ng/rtl8188eus/commit/13cc38399eb44f234a52dde5f94509e54a09c71f
+Forwarded: not-needed
+---
+ os_dep/linux/rtw_proc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/os_dep/linux/rtw_proc.c b/os_dep/linux/rtw_proc.c
+index 8b1a424..9bd4041 100644
+--- a/os_dep/linux/rtw_proc.c
++++ b/os_dep/linux/rtw_proc.c
+@@ -39,6 +39,10 @@ inline struct proc_dir_entry *get_rtw_drv_proc(void)
+ #define proc_get_parent_data(inode) PDE((inode))->parent->data
+ #endif
+ 
++#if(LINUX_VERSION_CODE >= KERNEL_VERSION(5, 17, 0))
++#define PDE_DATA(inode) pde_data(inode)
++#endif
++
+ #if (LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 24))
+ #define get_proc_net proc_net
+ #else
