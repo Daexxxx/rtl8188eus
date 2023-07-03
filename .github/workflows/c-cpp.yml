@@ -18,7 +18,7 @@ jobs:
     - name: make
       run: make
     - name: dh_make
-      run: dh_make -s --createorig
+      run: dh_make -p rtl8188eusdriver_5.3.9 -s --createorig
 
     - name: Build .deb
       run: dpkg-buildpackage -us -uc
