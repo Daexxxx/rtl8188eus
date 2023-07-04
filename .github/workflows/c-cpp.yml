@@ -18,6 +18,8 @@ jobs:
         run: make
       - name: Create .deb file
         run: dpkg-buildpackage -b -rfakeroot -us -uc
+      - name: ls
+        run: ls
       - name: Upload .deb file
         uses: actions/upload-artifact@v2
         with:
