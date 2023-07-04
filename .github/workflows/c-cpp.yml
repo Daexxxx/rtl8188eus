@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: my-project.deb
-          path: ./debian/artifacts/my-project_0.1.0_amd64.deb
+          path: ../realtek-rtl8188eus-dkms_5.3.9~git20230101.f8ead57-0kali1_all.deb
 
 
           
