@@ -17,7 +17,7 @@ jobs:
       - name: Build C project
         run: make
       - name: Create .deb file
-        run: dpkg-buildpackage -rfakeroot -us -uc
+        run: dpkg-buildpackage -s -rfakeroot -us -uc
       - name: Upload .deb file
         uses: actions/upload-artifact@v2
         with:
