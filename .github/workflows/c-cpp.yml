@@ -17,13 +17,12 @@ jobs:
       - name: Build C project
         run: make
       - name: Create .deb file
-        run: dpkg-buildpackage -s -rfakeroot -us -uc
+        run: dpkg-buildpackage -rfakeroot -us -uc
       - name: Upload .deb file
         uses: actions/upload-artifact@v2
         with:
           name: my-project.deb
           path: ./debian/artifacts/my-project_0.1.0_amd64.deb
-
 
 
           
