@@ -13,11 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: get xz file
-      - run : wget https://github.com/home-assistant/operating-system/releases/download/10.3/haos_generic-x86-64-10.3.img.xz
+        run : wget https://github.com/home-assistant/operating-system/releases/download/10.3/haos_generic-x86-64-10.3.img.xz
       - name: unzip
-      - run: sudo apt install xz-utils
+        run: sudo apt install xz-utils
       - name: unxz
-      - run: tar -xf haos_generic-x86-64-10.3.img.xz
+        run: tar -xf haos_generic-x86-64-10.3.img.xz
       - name: Upload .img file
         uses: actions/upload-artifact@v2
         with:
