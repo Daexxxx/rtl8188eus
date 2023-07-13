@@ -12,19 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: sudo apt-get install make debhelper dh-sequence-dkms
-      - name: Build C project
-        run: make
-      - name: Create .deb file
-        run: dpkg-buildpackage -b -rfakeroot -us -uc
-      - name: cd uo
-        run: cd ..
-      - name: Upload .deb file
+      - name: get xz file
+      - run : wget https://github.com/home-assistant/operating-system/releases/download/10.3/haos_generic-x86-64-10.3.img.xz
+      - name: unzip
+      - run: sudo apt install xz-utils
+      - name: unxz
+      - run: tar -xf haos_generic-x86-64-10.3.img.xz
+      - name: Upload .img file
         uses: actions/upload-artifact@v2
         with:
-          name: realtek-rtl8188eus-dkms.deb
-          path: ./realtek-rtl8188eus-dkms_5.3.9~git20230101.f8ead57-0kali1_all.deb
+          name: haos-generic-x86-64-10.3.img
+          path: ./haos-generic-x86-64-10.3.img
 
 
           
