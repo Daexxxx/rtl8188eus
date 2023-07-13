@@ -18,11 +18,14 @@ jobs:
         run: sudo apt install xz-utils
       - name: unxz
         run: unxz haos_generic-x86-64-10.3.img.xz
-      - name: Upload .img file
-        uses: actions/upload-artifact@v2
-        with:
-          name: haos-generic-x86-64-10.3.img
-          path: ./haos-generic-x86-64-10.3.img
+      - name: ls
+        run: ls
+
+     # - name: Upload .img file
+        #uses: actions/upload-artifact@v2
+        #with:
+          #name: haos-generic-x86-64-10.3.img
+          #path: ./haos-generic-x86-64-10.3.img
 
 
           
